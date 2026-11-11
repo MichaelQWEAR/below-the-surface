@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Below the Surface</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Below the Surface</h1>
+        <a href="#legend">How to read the field</a>
+    </header>
+
+    <main>
+        <div class="controls-bar">
+            <h2>Earthquake field</h2>
+            <div class="controls">
+                <div class="control">
+                    <label for="period">Time window</label>
+                    <select id="period">
+                        <option value="day">Past 24 hours</option>
+                        <option value="week">Past 7 days</option>
+                    </select>
+                </div>
+                <div class="control">
+                    <label for="magnitudeFilter">Minimum magnitude</label>
+                    <select id="magnitudeFilter">
+                        <option value="2.5">M 2.5+</option>
+                        <option value="4.5">M 4.5+</option>
+                    </select>
+                </div>
+                <button id="refreshBtn">Refresh feed</button>
+            </div>
+        </div>
+
+        <div class="summary">
+            <p><span class="label">Earthquakes in view</span> <span id="eventCount">-</span></p>
+            <p><span class="label">Largest magnitude</span> <span id="largestMagnitude">-</span></p>
+            <p><span class="label">Deepest in view</span> <span id="deepestEvent">-</span></p>
+        </div>
+
+        <div class="field-layout">
+            <div class="field-column">
+                <div class="field-heading">
+                    <p>Depth (km)</p>
+                    <p id="updatedTime">Waiting for data</p>
+                </div>
+                <div class="chart">
+                    <div id="depthAxis" class="depth-axis"></div>
+                    <div class="plot">
+                        <div id="gridLines" class="grid-lines"></div>
+                        <div id="points" class="points"></div>
+                        <p id="plotMessage" class="plot-message">Loading the earthquake field...</p>
+                    </div>
+                    <div class="time-axis">
+                        <span id="timeStart">24 h ago</span>
+                        <span id="timeMiddle">12 h ago</span>
+                        <span id="timeEnd">Now</span>
+                    </div>
+                </div>
+                <p class="plot-instruction">Click a circle to feel and hear it. Use the left and right arrow keys to
+                    move through time.</p>
+            </div>
+
+            <div class="event-detail">
+                <p class="detail-heading">Selected earthquake</p>
+                <p class="detail-magnitude"><span id="detailMagnitude">-</span> <span id="magnitudeType"
+                        class="magnitude-type"></span></p>
+                <h3 id="eventPlace">Choose an event in the field</h3>
+                <div class="event-facts">
+                    <div>
+                        <p class="label">Depth</p>
+                        <p id="eventDepth">-</p>
+                    </div>
+                    <div>
+                        <p class="label">Time</p>
+                        <p id="eventTime">-</p>
+                    </div>
+                    <div>
+                        <p class="label">Status</p>
+                        <p id="eventStatus">-</p>
+                    </div>
+                </div>
+                <a id="eventLink" class="event-link" href="https://earthquake.usgs.gov/earthquakes/"
+                    target="_blank">Open this event at USGS</a>
+                <div class="event-navigation">
+                    <button id="olderBtn" disabled>Older</button>
+                    <span id="eventPosition">-</span>
+                    <button id="newerBtn" disabled>Newer</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="legend" class="legend">
+            <div class="size-legend">
+                <span class="legend-title">Magnitude / size</span>
+                <span class="key"><span class="dot size-small"></span>M 2.5</span>
+                <span class="key"><span class="dot size-medium"></span>M 4.5</span>
+                <span class="key"><span class="dot size-large"></span>M 6.5</span>
+            </div>
+            <div class="color-legend">
+                <span class="legend-title">Depth / color</span>
+                <span class="key"><span class="dot color-shallow"></span>Under 70 km</span>
+                <span class="key"><span class="dot color-middle"></span>70 to 300 km</span>
+                <span class="key"><span class="dot color-deep"></span>Over 300 km</span>
+            </div>
+        </div>
+
+        <audio id="quakeSound">
+            <source src="audio/rumble.mp3" type="audio/mpeg">
+            This browser does not support audio.
+        </audio>
+    </main>
+
+    <footer>
+        <p>Kevin and Michael, CCT 360, Data as Experience</p>
+        <p>
+            Data from
+            <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">USGS Earthquake Hazards Program</a>
+        </p>
+        <p>
+            Sound Effect by
+            <a href="https://pixabay.com/zh/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6953">freesound_community</a>
+            from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6953">Pixabay</a>
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

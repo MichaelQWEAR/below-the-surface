@@ -1,0 +1,555 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #151719;
+    color: #f4f5f6;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+a {
+    color: #ffb87b;
+}
+
+a:hover {
+    color: #ffd8ad;
+}
+
+button,
+select {
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+header,
+main,
+footer {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 28px 0 18px;
+}
+
+header h1 {
+    font-size: 44px;
+    line-height: 1.1;
+}
+
+header a {
+    font-size: 14px;
+}
+
+main {
+    border: 1px solid #45494d;
+    background-color: #202326;
+    padding-bottom: 14px;
+}
+
+.controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 18px 20px;
+}
+
+.controls-bar h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.control {
+    margin-right: 10px;
+}
+
+.control label {
+    display: block;
+    margin-bottom: 4px;
+    color: #c5cbd0;
+    font-size: 12px;
+}
+
+.control select,
+#refreshBtn {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #666e73;
+    background-color: #2b3034;
+    color: #f4f5f6;
+    font-size: 14px;
+}
+
+.control select {
+    min-width: 130px;
+}
+
+#refreshBtn {
+    border-color: #ffae67;
+    background-color: #ffae67;
+    color: #201710;
+    font-weight: bold;
+}
+
+#refreshBtn:hover {
+    background-color: #ffc694;
+}
+
+#refreshBtn:disabled {
+    border-color: #666e73;
+    background-color: #343a3e;
+    color: #bfc5ca;
+}
+
+.summary {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    border-top: 1px solid #45494d;
+    border-bottom: 1px solid #45494d;
+    background-color: #272b2f;
+}
+
+.summary p {
+    margin-right: 28px;
+    font-weight: bold;
+}
+
+.label {
+    color: #c5cbd0;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.field-layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.field-column {
+    flex: 3;
+    flex-basis: 560px;
+    min-width: 0;
+    padding: 18px 18px 12px 16px;
+}
+
+.field-heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.field-heading p:first-child {
+    font-weight: bold;
+}
+
+#updatedTime {
+    color: #c5cbd0;
+}
+
+.chart {
+    position: relative;
+    padding: 12px 18px 28px 44px;
+}
+
+.plot {
+    position: relative;
+    height: 330px;
+    border: 1px solid #4c5357;
+    background-color: #1b1e21;
+}
+
+.depth-axis {
+    position: absolute;
+    top: 12px;
+    bottom: 28px;
+    left: 0;
+    width: 34px;
+    color: #c5cbd0;
+    font-size: 12px;
+}
+
+.depth-tick {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.grid-lines,
+.points {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #3a4044;
+}
+
+.time-axis {
+    position: absolute;
+    left: 44px;
+    right: 18px;
+    bottom: 2px;
+    height: 18px;
+    color: #c5cbd0;
+    font-size: 12px;
+}
+
+#timeStart {
+    position: absolute;
+    left: 0;
+}
+
+#timeMiddle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#timeEnd {
+    position: absolute;
+    right: 0;
+}
+
+.plot-message {
+    position: absolute;
+    top: 43%;
+    left: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+.plot-instruction {
+    margin-top: 6px;
+    color: #c5cbd0;
+    font-size: 12px;
+}
+
+.point {
+    position: absolute;
+    z-index: 2;
+    padding: 0;
+    border: 1px solid #f7f3ee;
+    border-radius: 50%;
+    background-color: #ffae67;
+    transform: translate(-50%, -50%);
+}
+
+.point.middle {
+    background-color: #ff8068;
+}
+
+.point.deep {
+    background-color: #c5b5ef;
+}
+
+.point:hover {
+    z-index: 4;
+    outline: 1px solid #f4f5f6;
+    outline-offset: 2px;
+}
+
+.point.selected {
+    z-index: 5;
+    outline: 2px solid #f4f5f6;
+    outline-offset: 3px;
+}
+
+.point.shake-small {
+    animation: shake-small 0.45s ease-out;
+}
+
+.point.shake-medium {
+    animation: shake-medium 0.45s ease-out;
+}
+
+.point.shake-large {
+    animation: shake-large 0.45s ease-out;
+}
+
+@keyframes shake-small {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%);
+    }
+
+    20%,
+    60% {
+        transform: translate(-50%, -50%) translateX(4px);
+    }
+
+    40%,
+    80% {
+        transform: translate(-50%, -50%) translateX(-4px);
+    }
+}
+
+@keyframes shake-medium {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%);
+    }
+
+    20%,
+    60% {
+        transform: translate(-50%, -50%) translateX(8px);
+    }
+
+    40%,
+    80% {
+        transform: translate(-50%, -50%) translateX(-8px);
+    }
+}
+
+@keyframes shake-large {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%);
+    }
+
+    20%,
+    60% {
+        transform: translate(-50%, -50%) translateX(13px);
+    }
+
+    40%,
+    80% {
+        transform: translate(-50%, -50%) translateX(-13px);
+    }
+}
+
+.event-detail {
+    flex: 1;
+    flex-basis: 254px;
+    min-width: 0;
+    padding: 18px 20px;
+    border-left: 1px solid #45494d;
+    background-color: #25282b;
+}
+
+.detail-heading {
+    color: #c5cbd0;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.detail-magnitude {
+    margin-top: 8px;
+    color: #ffae67;
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.magnitude-type {
+    color: #c5cbd0;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.event-detail h3 {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.event-facts {
+    margin-top: 16px;
+}
+
+.event-facts div {
+    padding: 7px 0;
+    border-top: 1px solid #45494d;
+    font-size: 14px;
+}
+
+.event-link {
+    display: none;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.event-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-size: 12px;
+}
+
+.event-navigation button {
+    height: 34px;
+    padding: 4px 8px;
+    border: 1px solid #666e73;
+    background-color: #2b3034;
+    color: #f4f5f6;
+}
+
+.event-navigation button:hover {
+    background-color: #42494e;
+}
+
+.event-navigation button:disabled {
+    background-color: #25282b;
+    color: #a3aaaf;
+}
+
+#eventPosition {
+    color: #c5cbd0;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid #45494d;
+    border-bottom: 1px solid #45494d;
+}
+
+.size-legend,
+.color-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: #c5cbd0;
+    font-size: 12px;
+}
+
+.legend-title {
+    margin-right: 12px;
+    color: #f4f5f6;
+    font-weight: bold;
+}
+
+.key {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.dot {
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #f7f3ee;
+    border-radius: 50%;
+    background-color: #ffae67;
+}
+
+.size-small {
+    width: 19px;
+    height: 19px;
+}
+
+.size-medium {
+    width: 27px;
+    height: 27px;
+}
+
+.size-large {
+    width: 35px;
+    height: 35px;
+}
+
+.color-shallow,
+.color-middle,
+.color-deep {
+    width: 11px;
+    height: 11px;
+}
+
+.color-middle {
+    background-color: #ff8068;
+}
+
+.color-deep {
+    background-color: #c5b5ef;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 14px 0 20px;
+    color: #c5cbd0;
+    font-size: 12px;
+}
+
+@media (max-width: 890px) {
+    .event-detail {
+        border-left: 0;
+        border-top: 1px solid #45494d;
+    }
+}
+
+@media (max-width: 620px) {
+    header h1 {
+        font-size: 34px;
+    }
+
+    .controls-bar,
+    .summary,
+    .event-detail,
+    .legend {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .chart {
+        padding-left: 36px;
+        padding-right: 15px;
+    }
+
+    .depth-axis {
+        width: 28px;
+    }
+
+    .time-axis {
+        left: 36px;
+        right: 15px;
+        font-size: 11px;
+    }
+
+    .plot {
+        height: 280px;
+    }
+}
