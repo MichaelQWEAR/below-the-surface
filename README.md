@@ -1,6 +1,6 @@
 # Below the Surface
 
-Kevin and Michael, CCT 360, Data as Experience
+Kevin and Michael, CCT 360, Designing With Data
 
 Below the Surface turns live earthquake data into something you can see, feel and hear. Each circle is one earthquake reported by USGS. Its position shows when it happened and how deep it was. Bigger earthquakes make bigger circles, stronger shakes and louder, longer rumbles.
 
